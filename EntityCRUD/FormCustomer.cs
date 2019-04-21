@@ -40,5 +40,38 @@ namespace EntityCRUD
         {
             CargarGrid();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txtCustomerId.Text);
+            using (AdventureEntities context = new AdventureEntities()) {
+                IQueryable<Customer> cliente = from q in context.Customer
+                                               where q.CustomerID == id
+                                               select q;
+                List<Customer> lista = cliente.ToList();
+
+                var oCliente = lista[0];
+
+                ckbNameStyle.Checked = oCliente.NameStyle;
+                txtTitle.Text = oCliente.Title;
+                txtFirstName.Text = oCliente.FirstName;
+                txtMiddleName.Text = oCliente.MiddleName;
+                txtLastName.Text = oCliente.LastName;
+                txtSuflix.Text = oCliente.Suffix;
+                txtCompany.Text = oCliente.CompanyName;
+                txtSalePerson.Text = oCliente.SalesPerson;
+                txtEmail.Text = oCliente.EmailAddress;
+                txtPhone.Text = oCliente.Phone;
+                txtPassHash.Text = oCliente.PasswordHash;
+                txtPassSalt.Text = oCliente.PasswordSalt;
+            }
+        }
+
+        private void txtCustomerId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Return) {
+                btnSearch_Click(sender, e);
+            }
+        }
     }
 }

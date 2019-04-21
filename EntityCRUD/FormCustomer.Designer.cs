@@ -185,6 +185,7 @@
             this.txtCustomerId.Name = "txtCustomerId";
             this.txtCustomerId.Size = new System.Drawing.Size(100, 22);
             this.txtCustomerId.TabIndex = 13;
+            this.txtCustomerId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCustomerId_KeyPress);
             // 
             // txtFirstName
             // 
@@ -280,6 +281,7 @@
             this.btnSearch.TabIndex = 26;
             this.btnSearch.Text = "...";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnInsert
             // 
