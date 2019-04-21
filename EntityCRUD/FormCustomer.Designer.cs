@@ -291,6 +291,7 @@
             this.btnInsert.TabIndex = 27;
             this.btnInsert.Text = "Grabar";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnClear
             // 
