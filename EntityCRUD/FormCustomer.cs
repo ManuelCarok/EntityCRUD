@@ -167,5 +167,30 @@ namespace EntityCRUD
                 CargarGrid();
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txtCustomerId.Text);
+
+            using (AdventureEntities context = new AdventureEntities())
+            {
+                //Ejemplo 1:
+                //Customer oCliente = context.Customer.SingleOrDefault(p => p.CustomerID == id);
+
+                //Ejemplo 2:
+                Customer oCliente = (from q in context.Customer
+                                     where q.CustomerID == id
+                                     select q).First();
+
+                try {
+                    context.Customer.Remove(oCliente);
+                    context.SaveChanges();
+
+                    CargarGrid();
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }
